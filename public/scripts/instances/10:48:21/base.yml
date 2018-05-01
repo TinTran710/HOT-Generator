@@ -1,0 +1,268 @@
+heat_template_version: 2016-04-08
+description: A HEAT template
+
+parameters:
+  image:
+    type: string
+  flavor:
+    type: string
+  key_name:
+    type: string
+  public_net:
+    type: string
+  private_net:
+    type: string        
+  private_subnet:
+    type: string
+
+resources:
+  instance1_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance1_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance1_port }
+
+  instance1:
+    type: OS::Nova::Server
+    properties:
+      name: instance1
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance1_port }
+
+  instance2_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance2_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance2_port }
+
+  instance2:
+    type: OS::Nova::Server
+    properties:
+      name: instance2
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance2_port }
+
+  instance3_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance3_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance3_port }
+
+  instance3:
+    type: OS::Nova::Server
+    properties:
+      name: instance3
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance3_port }
+
+  instance4_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance4_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance4_port }
+
+  instance4:
+    type: OS::Nova::Server
+    properties:
+      name: instance4
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance4_port }
+
+  instance5_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance5_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance5_port }
+
+  instance5:
+    type: OS::Nova::Server
+    properties:
+      name: instance5
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance5_port }
+
+  instance6_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance6_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance6_port }
+
+  instance6:
+    type: OS::Nova::Server
+    properties:
+      name: instance6
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance6_port }
+
+  instance7_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance7_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance7_port }
+
+  instance7:
+    type: OS::Nova::Server
+    properties:
+      name: instance7
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance7_port }
+
+  instance8_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance8_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance8_port }
+
+  instance8:
+    type: OS::Nova::Server
+    properties:
+      name: instance8
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance8_port }
+
+  instance9_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance9_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance9_port }
+
+  instance9:
+    type: OS::Nova::Server
+    properties:
+      name: instance9
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance9_port }
+
+  instance10_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance10_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance10_port }
+
+  instance10:
+    type: OS::Nova::Server
+    properties:
+      name: instance10
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance10_port }
+

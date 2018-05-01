@@ -1,0 +1,7 @@
+parameters:
+  image:
+  flavor:
+  key_name:
+  private_subnet:
+  private_net:
+  public_net:

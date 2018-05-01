@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 
 class VMController extends Controller
 {
-	protected $token = 'gAAAAABa6FEQJdfooh1taa9ofehs8nFSg1wmuSLd4H5JFIK6N2O4LFBFBzr-fWZvqn_Utt1M4JGzY_hpV53mmwPtU0Q3PRZvl7YXvpD_eUDS9QtT461GkqnRGeB1Pro5wkEvjtWx9GuQF1snRP7TFcdK1JqXhcIdtgUzgOX49-tuoluHdxd7YN0';
+	protected $token = 'gAAAAABa6GFwsSdDJsUK6L3X1p1i9U9R-0peQTlybdEUpkcvNBTm4Wt_5zMQHo4yxvgn_VJrAf2CvOBEU44nQ9rw3nTUNO2VBf7HfGXopwo1x7CK0W-SO2oFx8blp_HS0v3vCYTvmnGJkX1OvK4HFGW7q7tgy67wE-LhLfcQRizrNbUl3wbbqVA';
     
 	public function index() {
 		return view('index');
@@ -104,9 +104,9 @@ class VMController extends Controller
 		$privateSubnet = explode('|', $request->privateSubnet);
 
 		// Copy base files and paste new directory		
-		$source = '/var/www/html/OpenStack/public/scripts/instances/example'; 
+		$source = '/var/www/html/HOTGenerator/public/scripts/instances/example'; 
 		$date = date("H:i:s");
-		$path = '/var/www/html/OpenStack/public/scripts/instances/'.$date;
+		$path = '/var/www/html/HOTGenerator/public/scripts/instances/'.$date;
 		$this->recurse_copy($source, $path);
 
 		// Edit parameter.yml file
@@ -136,10 +136,10 @@ class VMController extends Controller
 
 		// edit permission.sh to give execution permission for run.sh file
 		$old_path = getcwd();
-		$abs_path = '/var/www/html/OpenStack/public/scripts/instances';
+		$abs_path = '/var/www/html/HOTGenerator/public/scripts/instances';
 		chdir($abs_path);
 		$file = file($abs_path.'/permission.sh');
-		$file[1] = 'chmod 755 /var/www/html/OpenStack/public/scripts/instances/'.$date.'/run.sh';
+		$file[1] = 'chmod 755 /var/www/html/HOTGenerator/public/scripts/instances/'.$date.'/run.sh';
 		file_put_contents($abs_path.'/permission.sh', implode("", $file));
 		shell_exec('./permission.sh');
 		chdir($old_path);

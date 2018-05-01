@@ -15,6 +15,6 @@ Route::get('/', function (){
     return view('welcome');
 });
 
-Route::get('home', 'HeatController@home');
-Route::get('form', 'HeatController@getForm');
-Route::post('form', 'HeatController@postForm');
+Route::get('home', 'VMController@home');
+Route::get('form', 'VMController@getForm');
+Route::post('form', 'VMController@postForm');

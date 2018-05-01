@@ -1,7 +1,0 @@
-parameters:
-  image: cirros
-  flavor: m1.nano
-  key_name: mykey
-  private_subnet: selfservice
-  private_net: 3b890e8d-8fbc-4fda-96ed-d37f9730d137
-  public_net: provider

@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod 755 /var/www/html/OpenStack/public/scripts/instances/10:48:21/run.sh
+chmod 755 /var/www/html/HOTGenerator/public/scripts/instances/12:28:50/run.sh

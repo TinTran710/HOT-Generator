@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
-class VMController extends Controller
+class InstanceController extends Controller
 {
-	protected $token = 'gAAAAABa6GFwsSdDJsUK6L3X1p1i9U9R-0peQTlybdEUpkcvNBTm4Wt_5zMQHo4yxvgn_VJrAf2CvOBEU44nQ9rw3nTUNO2VBf7HfGXopwo1x7CK0W-SO2oFx8blp_HS0v3vCYTvmnGJkX1OvK4HFGW7q7tgy67wE-LhLfcQRizrNbUl3wbbqVA';
-    
-	public function index() {
-		return view('index');
-	}
+	protected $token = 'gAAAAABa8b-6IoDw4qEf6lp1q6tsa0jBV1oSRc1YH0vpZV3KQ7KuySUPaLGMfaAm77YZNwrNus8rKFVeAj_Tga0DBFgaiUIPyjLTwP3dITdGxszjvygnjqP15JgZEDwccxqIML2mMBj-VTzi_naXxBaCiYsD7IieA2r83sTjWel6M2ogJaMrddU';
 
-	public function home() {
-		return view('home');
-	}
+    public function makeHttpRequest($request) {
+        $client = new Client();
+        $response = $client->request('GET', $request, ['headers' => ['X-Auth-Token' => $this->token] ]);
+        $objectResponse = json_decode($response->getBody());
+        $arrayResponse = (array) $objectResponse;
+        return $arrayResponse;
+    }
 
 	public function getFlavorInfo() {
 		$request = 'http://controller:8774/v2.1/flavors';
@@ -73,21 +73,13 @@ class VMController extends Controller
 		return $privateSubnetList;
 	}
 
-    public function makeHttpRequest($request) {
-        $client = new Client();
-        $response = $client->request('GET', $request, ['headers' => ['X-Auth-Token' => $this->token] ]);
-        $objectResponse = json_decode($response->getBody());
-        $arrayResponse = (array) $objectResponse;
-        return $arrayResponse;
-    }
-
 	public function getForm() {
 		$publicNetList = $this->getPublicNetInfo();
 		$privateSubnetList = $this->getPrivateSubnetInfo();
 		$flavorList = $this->getFlavorInfo();
 		$imageList = $this->getImageInfo();
 		$keyNameList = $this->getKeyNameInfo();
-		return view('form')
+		return view('instance')
 		->with('flavorList', $flavorList)
 		->with('imageList', $imageList)
 		->with('publicNetList', $publicNetList)
@@ -103,7 +95,7 @@ class VMController extends Controller
 		$publicNet = $request->publicNet;
 		$privateSubnet = explode('|', $request->privateSubnet);
 
-		// Copy base files and paste new directory		
+		// Copy base files and paste to new directory		
 		$source = '/var/www/html/HOTGenerator/public/scripts/instances/example'; 
 		$date = date("H:i:s");
 		$path = '/var/www/html/HOTGenerator/public/scripts/instances/'.$date;
@@ -151,7 +143,7 @@ class VMController extends Controller
 		shell_exec('./run.sh');
 		chdir($old_path);
 
-		return redirect('form')->with('message', 'Successfully created templates');
+		return redirect('instance')->with('message', 'Successfully created templates');
 	}
 
 	public function recurse_copy($src,$dst) { 

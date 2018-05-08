@@ -20,7 +20,7 @@
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="index">HOT Generator</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="home">HOT Generator</a>
        <h4 style="color: white; padding-top:3px;">Dashboard</h4>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">

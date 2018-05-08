@@ -11,7 +11,7 @@
         </div>
     @endif
 
-	<form action="form" method="POST">
+	<form action="instance" method="POST">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 
 		<div class="form-group">

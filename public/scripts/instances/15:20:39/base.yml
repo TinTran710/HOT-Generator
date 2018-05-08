@@ -1,0 +1,93 @@
+heat_template_version: 2016-04-08
+description: A HEAT template
+
+parameters:
+  image:
+    type: string
+  flavor:
+    type: string
+  key_name:
+    type: string
+  public_net:
+    type: string
+  private_net:
+    type: string        
+  private_subnet:
+    type: string
+
+resources:
+  instance1_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance1_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance1_port }
+
+  instance1:
+    type: OS::Nova::Server
+    properties:
+      name: instance1
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance1_port }
+
+  instance2_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance2_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance2_port }
+
+  instance2:
+    type: OS::Nova::Server
+    properties:
+      name: instance2
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance2_port }
+
+  instance3_port:
+    type: OS::Neutron::Port
+    properties:
+      network_id: { get_param: private_net }
+      security_groups:
+        - default
+      fixed_ips:
+        - subnet_id: { get_param: private_subnet }
+        
+  instance3_floating_ip:
+    type: OS::Neutron::FloatingIP
+    properties:
+      floating_network_id: { get_param: public_net }
+      port_id: { get_resource: instance3_port }
+
+  instance3:
+    type: OS::Nova::Server
+    properties:
+      name: instance3
+      image: { get_param: image }
+      flavor: { get_param: flavor }
+      key_name: { get_param: key_name }
+      networks:
+        - port: { get_resource: instance3_port }
+

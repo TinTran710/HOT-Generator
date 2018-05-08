@@ -1,0 +1,6 @@
+  private_subnet:
+    type: OS::Neutron::Subnet
+    properties:
+      network_id: { get_resource: private_network }
+      cidr: 10.0.0.0/24
+

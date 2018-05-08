@@ -15,6 +15,12 @@ Route::get('/', function (){
     return view('welcome');
 });
 
-Route::get('home', 'VMController@home');
-Route::get('form', 'VMController@getForm');
-Route::post('form', 'VMController@postForm');
+Route::get('home', function() {
+	return view('home');
+});
+
+Route::get('instance', 'InstanceController@getForm');
+Route::post('instance', 'InstanceController@postForm');
+
+Route::get('network', 'NetworkController@getForm');
+Route::post('network', 'NetworkController@postForm');
